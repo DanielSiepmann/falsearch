@@ -1,6 +1,7 @@
 {
-    "name": "abservicesag/falsearch",
+    "name": "cabservicesag/falsearch",
     "description": "Adds a file search box that allows the user to search through the files/folders recursively.",
+    "type": "typo3-cms-extension",
     "authors": [
         {
             "name": "Nils Blattner",
@@ -15,7 +16,17 @@
             "email": "ln@cabag.ch"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Cabag\\Falsearch\\": "Classes/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
     "require": {
-        "typo3/cms": "~7.6.0 | ~8.7.0"
+        "typo3/cms": "^7.6.0 || ^8.7.0"
     }
 }
