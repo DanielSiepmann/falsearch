@@ -1,0 +1,21 @@
+{
+    "name": "abservicesag/falsearch",
+    "description": "Adds a file search box that allows the user to search through the files/folders recursively.",
+    "authors": [
+        {
+            "name": "Nils Blattner",
+            "email": "nb@cabag.ch"
+        },
+        {
+            "name": "Tizian Schmidlin",
+            "email": "st@cabag.ch"
+        },
+        {
+            "name": "Lavinia Negru",
+            "email": "ln@cabag.ch"
+        }
+    ],
+    "require": {
+        "typo3/cms": "~7.6.0 | ~8.7.0"
+    }
+}
