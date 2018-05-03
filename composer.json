@@ -1,5 +1,5 @@
 {
-    "name": "cabservicesag/falsearch",
+    "name": "codappix/falsearch",
     "description": "Adds a file search box that allows the user to search through the files/folders recursively.",
     "type": "typo3-cms-extension",
     "authors": [
@@ -28,5 +28,8 @@
     },
     "require": {
         "typo3/cms": "^7.6.0 || ^8.7.0"
+    },
+    "replace": {
+        "typo3-ter/falsearch": "*"
     }
 }
