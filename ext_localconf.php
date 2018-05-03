@@ -1,22 +1,22 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
- 	die ('Access denied.');
+if (!defined('TYPO3_MODE')) {
+    die('Access denied.');
 }
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Filelist\\FileList'] = array(
-	'className' => 'Cabag\\Falsearch\\Xclass\\FileList'
+    'className' => 'Cabag\\Falsearch\\Xclass\\FileList'
 );
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Recordlist\\Browser\\ElementBrowser'] = array(
-	'className' => 'Cabag\\Falsearch\\Xclass\\ElementBrowser'
+    'className' => 'Cabag\\Falsearch\\Xclass\\ElementBrowser'
 );
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Rtehtmlarea\\BrowseLinks'] = array(
-	'className' => 'Cabag\\Falsearch\\Xclass\\BrowseLinks'
+    'className' => 'Cabag\\Falsearch\\Xclass\\BrowseLinks'
 );
 
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects']['TYPO3\\CMS\\Core\\Resource\\Folder'] = array(
-	'className' => 'Cabag\\Falsearch\\Xclass\\Folder'
+    'className' => 'Cabag\\Falsearch\\Xclass\\Folder'
 );
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/show_item.php']['typeRendering'][] = 'EXT:falsearch/Classes/Controller/ElementInformationController.php:Cabag\\Falsearch\\Controller\\ElementInformationController';

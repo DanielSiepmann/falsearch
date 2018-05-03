@@ -21,67 +21,71 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @author Nils Blattner <nb@cabag.ch>
  */
-class FileList extends \TYPO3\CMS\Filelist\FileList {
+class FileList extends \TYPO3\CMS\Filelist\FileList
+{
 
-	/**
-	 * Returns a table with directories and files listed.
-	 *
-	 * @param array $rowlist Array of files from path
-	 * @return string HTML-table
-	 * @todo Define visibility
-	 */
-	public function getTable($rowlist) {
-		$categoryUtility = GeneralUtility::makeInstance('Cabag\\Falsearch\\Utility\\CategoryUtility');
+    /**
+     * Returns a table with directories and files listed.
+     *
+     * @param array $rowlist Array of files from path
+     * @return string HTML-table
+     * @todo Define visibility
+     */
+    public function getTable($rowlist)
+    {
+        $categoryUtility = GeneralUtility::makeInstance('Cabag\\Falsearch\\Utility\\CategoryUtility');
 
-		$searchCategory = intval(GeneralUtility::_GP('searchCategory'));
-		$searchWord = htmlspecialchars(trim(GeneralUtility::_GP('searchWord')));
+        $searchCategory = intval(GeneralUtility::_GP('searchCategory'));
+        $searchWord = htmlspecialchars(trim(GeneralUtility::_GP('searchWord')));
 
-		$content .= '<input type="text" name="searchWord" value="' . $searchWord . '" />';
-		$content .= $categoryUtility->getCategorySelect(array('name' => 'searchCategory'), $searchCategory);
-		$content .= '<input type="submit" value="' . $GLOBALS['LANG']->sL('LLL:EXT:falsearch/Resources/Private/Language/locallang.xlf:search') . '" />';
+        $content .= '<input type="text" name="searchWord" value="' . $searchWord . '" />';
+        $content .= $categoryUtility->getCategorySelect(array('name' => 'searchCategory'), $searchCategory);
+        $content .= '<input type="submit" value="' . $GLOBALS['LANG']->sL('LLL:EXT:falsearch/Resources/Private/Language/locallang.xlf:search') . '" />';
 
-		if (!empty($searchWord) || $searchCategory > 0) {
-			$this->folderObject->setSearchWords($searchWord);
-			$this->folderObject->setSearchCategory($searchCategory);
+        if (!empty($searchWord) || $searchCategory > 0) {
+            $this->folderObject->setSearchWords($searchWord);
+            $this->folderObject->setSearchCategory($searchCategory);
 
-			$this->folderObject->setOverrideRecursion(true);
-		}
+            $this->folderObject->setOverrideRecursion(true);
+        }
 
-		$content .= parent::getTable($rowlist);
+        $content .= parent::getTable($rowlist);
 
-		return $content;
-	}
+        return $content;
+    }
 
-	/**
-	 * Wraps filenames in links which opens them in a window IF they are in web-path.
-	 *
-	 * @param string $code String to be wrapped in links
-	 * @param \TYPO3\CMS\Core\Resource\File $fileObject File to be linked
-	 * @return string HTML
-	 * @todo Define visibility
-	 */
-	public function linkWrapFile($code, \TYPO3\CMS\Core\Resource\File $fileObject) {
-		$code = parent::linkWrapFile($code, $fileObject);
+    /**
+     * Wraps filenames in links which opens them in a window IF they are in web-path.
+     *
+     * @param string $code String to be wrapped in links
+     * @param \TYPO3\CMS\Core\Resource\File $fileObject File to be linked
+     * @return string HTML
+     * @todo Define visibility
+     */
+    public function linkWrapFile($code, \TYPO3\CMS\Core\Resource\File $fileObject)
+    {
+        $code = parent::linkWrapFile($code, $fileObject);
 
-		if ($this->folderObject->getOverrideRecursion()) {
-			$code = htmlspecialchars(rawurldecode(substr($fileObject->getParentFolder()->getPublicUrl(), strlen($this->folderObject->getPublicUrl())))) . $code;
-		}
+        if ($this->folderObject->getOverrideRecursion()) {
+            $code = htmlspecialchars(rawurldecode(substr($fileObject->getParentFolder()->getPublicUrl(), strlen($this->folderObject->getPublicUrl())))) . $code;
+        }
 
-		return $code;
-	}
+        return $code;
+    }
 
-	/**
-	 * Do not show folders when searching.
-	 *
-	 * @param \TYPO3\CMS\Core\Resource\Folder[] $folders Folders of \TYPO3\CMS\Core\Resource\Folder
-	 * @return string HTML table rows.
-	 * @todo Define visibility
-	 */
-	public function formatDirList(array $folders) {
-		if ($this->folderObject->getOverrideRecursion()) {
-			return '';
-		}
+    /**
+     * Do not show folders when searching.
+     *
+     * @param \TYPO3\CMS\Core\Resource\Folder[] $folders Folders of \TYPO3\CMS\Core\Resource\Folder
+     * @return string HTML table rows.
+     * @todo Define visibility
+     */
+    public function formatDirList(array $folders)
+    {
+        if ($this->folderObject->getOverrideRecursion()) {
+            return '';
+        }
 
-		return parent::formatDirList($folders);
-	}
+        return parent::formatDirList($folders);
+    }
 }
